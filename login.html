@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Serena Healthcare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <script src="js/theme-loader.js"></script>
+    <script src="js/language-loader.js"></script>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <div class="logo">
+                <div class="logo-placeholder">S</div>
+                <span class="logo-text" data-en="Serena" data-ar="سيرينا">Serena</span>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="lang-toggle" id="langToggle">
+                    EN
+                </button>
+                <a href="index.html" class="btn btn-login" data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="register.html" class="btn btn-primary" data-en="Register" data-ar="إنشاء حساب">Register</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-nav-link" data-en="Home" data-ar="الرئيسية">Home</a>
+            <a href="register.html" class="mobile-nav-link" data-en="Register" data-ar="إنشاء حساب">Register</a>
+            <div class="mobile-auth-buttons">
+                <a href="index.html" class="btn btn-login" data-en="Home" data-ar="الرئيسية">Home</a>
+                <a href="register.html" class="btn btn-primary" data-en="Register" data-ar="إنشاء حساب">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Form -->
+    <div class="auth-container">
+        <!-- Video Background -->
+        <div class="auth-video-container">
+            <video autoplay muted loop class="auth-video">
+                <source src="assets/videos/BloodCell video.mp4" type="video/mp4">
+                <!-- Fallback image if video doesn't load -->
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Medical Background" style="width:100%;height:100%;object-fit:cover;">
+            </video>
+            <div class="auth-video-overlay"></div>
+        </div>
+        
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="auth-logo">
+                    <div class="logo-placeholder">S</div>
+                    <span class="logo-text">Serena</span>
+                </div>
+                <h2 class="auth-title">HELLO!</h2>
+                <p class="auth-subtitle" data-en="Please enter your details to continue" data-ar="يرجى إدخال تفاصيلك للمتابعة">Please enter your details to continue</p>
+            </div>
+            
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label class="form-label" data-en="Email Address" data-ar="عنوان البريد الإلكتروني">Email Address</label>
+                    <div class="email-fields">
+                        <div class="form-group">
+                            <input type="text" id="login-email-user" class="form-input" placeholder="username" data-en="Username" data-ar="اسم المستخدم" data-validation="email-user">
+                        </div>
+                        <div class="form-group domain-group">
+                            <div class="email-at">@</div>
+                            <div class="domain">
+                                <input type="text" id="login-email-domain" class="form-input" placeholder="domain.com" data-en="Domain" data-ar="النطاق" data-validation="email-domain">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Validation message مشترك لـ email -->
+                    <div class="validation-message" id="login-email-validation"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="login-password" data-en="Password" data-ar="كلمة المرور">Password</label>
+                    <div class="password-input-wrapper">
+                        <input type="password" id="login-password" class="form-input" placeholder data-en="Enter your password" data-ar="أدخل كلمة المرور" data-validation="password">
+                        <button type="button" class="password-toggle" id="login-password-toggle">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="password-strength-container">
+                        <div class="password-strength">
+                            <div class="strength-bar" id="login-password-strength"></div>
+                        </div>
+                        <div class="strength-text" id="login-password-strength-text"></div>
+                    </div>
+                    <div class="validation-message" id="login-password-validation"></div>
+                </div>
+                
+                <div class="form-options">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember" data-en="Remember me" data-ar="تذكرني">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password" data-en="Forgot password?" data-ar="نسيت كلمة المرور؟">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="auth-submit-btn" id="login-submit">
+                    <span class="btn-text" data-en="Log In" data-ar="تسجيل الدخول">Log In</span>
+                    <div class="loading-spinner"></div>
+                </button>
+            </form>
+
+            <div class="divider">
+                <div class="divider-line"></div>
+                <div class="divider-text" data-en="or" data-ar="أو">or</div>
+                <div class="divider-line"></div>
+            </div>
+
+            <div class="social-buttons">
+                <button type="button" class="social-btn">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button type="button" class="social-btn">
+                    <i class="fab fa-twitter"></i>
+                </button>
+                <button type="button" class="social-btn">
+                    <i class="fab fa-apple"></i>
+                </button>
+                <button type="button" class="social-btn">
+                    <!-- <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google"> -->
+                    <i class="fab fa-google"></i>
+                </button>
+            </div>
+            
+            <div class="auth-footer">
+                <p data-en="Do Not Have Account?" data-ar="ليس لديك حساب؟">Do Not Have Account? <a href="register.html" class="auth-link" data-en="Sign Up" data-ar="إنشاء حساب">Sign Up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

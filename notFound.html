@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found | MediCare Hospital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e6f7ff 0%, #f0f9ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 90%;
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 119, 182, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hospital-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        
+        .hospital-icon .cross {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .hospital-icon .cross:before,
+        .hospital-icon .cross:after {
+            content: '';
+            position: absolute;
+            background-color: #0077b6;
+            border-radius: 4px;
+        }
+        
+        .hospital-icon .cross:before {
+            width: 80px;
+            height: 20px;
+            top: 30px;
+            left: 0;
+        }
+        
+        .hospital-icon .cross:after {
+            width: 20px;
+            height: 80px;
+            top: 0;
+            left: 30px;
+        }
+        
+        .heartbeat {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #ff6b6b;
+            animation: heartbeat 1.5s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0% { transform: scaleX(1); }
+            14% { transform: scaleX(1.3); }
+            28% { transform: scaleX(1); }
+            42% { transform: scaleX(1.3); }
+            70% { transform: scaleX(1); }
+        }
+        
+        h1 {
+            font-size: 7rem;
+            color: #0077b6;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0 rgba(0, 119, 182, 0.1);
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #023e8a;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: #555;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-box {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            background: #f8f9fa;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-box button {
+            padding: 0 25px;
+            background: #0077b6;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+        }
+        
+        .search-box button:hover {
+            background: #023e8a;
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: #0077b6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #023e8a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 119, 182, 0.2);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #0077b6;
+            border: 2px solid #0077b6;
+        }
+        
+        .btn-secondary:hover {
+            background: #0077b6;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 119, 182, 0.2);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(0, 119, 182, 0.05);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-duration: 20s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 70%;
+            left: 80%;
+            animation-duration: 15s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 40px;
+            height: 40px;
+            top: 40%;
+            left: 85%;
+            animation-duration: 25s;
+        }
+        
+        .floating-element:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 15%;
+            animation-duration: 30s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(100px, -100px) rotate(360deg);
+            }
+        }
+        
+        .medical-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .medical-icon {
+            width: 60px;
+            height: 60px;
+            background: #e6f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0077b6;
+            font-size: 1.5rem;
+            animation: bounce 3s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .medical-icon:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .medical-icon:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .medical-icon:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 5rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container pulse">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        
+        <div class="hospital-icon">
+            <div class="cross"></div>
+            <div class="heartbeat"></div>
+        </div>
+        
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+        <p>We're sorry, the page you're looking for seems to have taken an unexpected turn. Our medical team is on it, but in the meantime, you can try one of the options below.</p>
+        
+        <!-- <div class="search-box">
+            <input type="text" placeholder="Search our website...">
+            <button>Search</button>
+        </div> -->
+        
+        <div class="buttons">
+            <a href="index.html" class="btn btn-primary">Return to Homepage</a>
+            <a href="contact.html" class="btn btn-secondary">Contact Support</a>
+        </div>
+        
+        <div class="medical-icons">
+            <div class="medical-icon">🧑‍⚕️</div>
+            <div class="medical-icon">❤</div>
+            <div class="medical-icon">🚑</div>
+            <div class="medical-icon">🏥</div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.querySelector('.container');
+            
+            // Add a subtle hover effect
+            container.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 15px 40px rgba(0, 119, 182, 0.15)';
+            });
+            
+            container.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 119, 182, 0.1)';
+            });
+            
+            // Animate the heartbeat line on click
+            const heartbeat = document.querySelector('.heartbeat');
+            container.addEventListener('click', function() {
+                heartbeat.style.animation = 'none';
+                setTimeout(() => {
+                    heartbeat.style.animation = 'heartbeat 1.5s infinite';
+                }, 10);
+            });
+            
+            // // Make the search box functional
+            // const searchInput = document.querySelector('.search-box input');
+            // const searchButton = document.querySelector('.search-box button');
+            
+            // searchButton.addEventListener('click', function() {
+            //     if (searchInput.value.trim() !== '') {
+            //         alert('Searching for: ' + searchInput.value);
+            //     } else {
+            //         searchInput.focus();
+            //     }
+            // });
+            
+            // searchInput.addEventListener('keypress', function(e) {
+            //     if (e.key === 'Enter') {
+            //         searchButton.click();
+            //     }
+            // });
+        });
+    </script>
+</body>
+</html>

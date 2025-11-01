@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Hospitals - Serena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="js/theme-loader.js"></script>
+    <script src="js/language-loader.js"></script>
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/hospitals.css">
+    <link rel="stylesheet" href="css/toaster.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <div class="logo">
+                <div class="logo-placeholder">S</div>
+                <span class="logo-text" data-en="Serena" data-ar="سيرينا">Serena</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-en="Home" data-ar="الرئيسية">Home</a>
+                <div class="dropdown">
+                    <button class="nav-link dropdown-toggle active" data-en="Services" data-ar="الخدمات">
+                        <span data-en="Services" data-ar="الخدمات">Services</span> <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="hospitals.html" class="dropdown-link active" data-en="Find Hospital" data-ar="ابحث عن مستشفى">Find Hospital</a>
+                        <a href="doctors.html" class="dropdown-link" data-en="Find Doctors" data-ar="ابحث عن أطباء">Find Doctors</a>
+                        <a href="comingSoon.html" class="dropdown-link" data-en="Blogs" data-ar="المدونات">Blogs</a>
+                        <a href="comingSoon.html" class="dropdown-link" data-en="Reviews" data-ar="التقييمات">Reviews</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link" data-en="About Us" data-ar="من نحن">About Us</a>
+                <a href="contact.html" class="nav-link" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="lang-toggle" id="langToggle">
+                    EN
+                </button>
+                <a href="login.html" class="btn btn-login" data-en="Login" data-ar="تسجيل الدخول">Login</a>
+                <a href="register.html" class="btn btn-primary" data-en="Register" data-ar="إنشاء حساب">Register</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-nav-link" data-en="Home" data-ar="الرئيسية">Home</a>
+            
+            <!-- Services Dropdown in Mobile -->
+            <div class="mobile-dropdown">
+                <button class="mobile-nav-link mobile-dropdown-toggle active" data-en="Services" data-ar="الخدمات">
+                    <span data-en="Services" data-ar="الخدمات">Services</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="hospitals.html" class="mobile-dropdown-link active" data-en="Find Hospital" data-ar="ابحث عن مستشفى">Find Hospital</a>
+                    <a href="doctors.html" class="mobile-dropdown-link" data-en="Find Doctors" data-ar="ابحث عن أطباء">Find Doctors</a>
+                    <a href="comingSoon.html" class="mobile-dropdown-link" data-en="Blogs" data-ar="المدونات">Blogs</a>
+                    <a href="comingSoon.html" class="mobile-dropdown-link" data-en="Reviews" data-ar="التقييمات">Reviews</a>
+                </div>
+            </div>
+            
+            <a href="about.html" class="mobile-nav-link" data-en="About Us" data-ar="من نحن">About Us</a>
+            <a href="contact.html" class="mobile-nav-link" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+            <div class="mobile-auth-buttons">
+                <a href="login.html" class="btn btn-login" data-en="Login" data-ar="تسجيل الدخول">Login</a>
+                <a href="register.html" class="btn btn-primary" data-en="Register" data-ar="إنشاء حساب">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-background">
+            <div class="page-header-orbs">
+                <div class="page-header-orb"></div>
+                <div class="page-header-orb"></div>
+                <div class="page-header-orb"></div>
+            </div>
+        </div>
+        <div class="container">
+            <h1 class="page-title" data-en="Find Hospitals" data-ar="ابحث عن مستشفى">Find Hospitals</h1>
+            <p class="page-subtitle" data-en="Discover the best hospitals in our network" data-ar="اكتشف أفضل المستشفيات في شبكتنا">
+                Discover the best hospitals in our network
+            </p>
+        </div>
+    </section>
+
+    <!-- Search and Filters Section -->
+    <section class="search-section">
+        <div class="container">
+            <!-- Search Bar -->
+            <div class="search-main-row">
+                <div class="search-bar">
+                    <div class="search-input-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="hospitalSearch" class="search-input" 
+                                placeholder data-en="Search by hospital name or specialty..." data-ar="ابحث باسم المستشفى أو التخصص...">
+                        <div class="search-autocomplete" id="searchAutocomplete"></div>
+                    </div>
+                    <button class="btn btn-primary search-btn" data-en="Search" data-ar="بحث">Search</button>
+                </div>
+            </div>
+
+            <!-- Filters Panel -->
+            <div class="filters-container">
+                <div class="filters-header">
+                    <h3 class="filters-title" data-en="Advanced Filters" data-ar="فلاتر متقدمة">Advanced Filters</h3>
+                    <div class="filters-actions">
+                        <button class="btn btn-secondary" id="moreFiltersBtn">
+                            <span data-en="More Filters" data-ar="فلاتر إضافية">More Filters</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <button class="btn btn-clear" id="clearFilters" data-en="Clear All" data-ar="مسح الكل">Clear All</button>
+                    </div>
+                </div>
+                
+                <div class="filters-grid">
+                    <!-- Location Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label" data-en="Location" data-ar="الموقع">Location</label>
+                        <div class="custom-dropdown">
+                            <div class="custom-dropdown-select">
+                                <span data-en="All Locations" data-ar="جميع المواقع">All Locations</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="custom-dropdown-options">
+                                <div class="custom-dropdown-option" data-value="">All Locations</div>
+                                <div class="custom-dropdown-option" data-value="cairo">Cairo</div>
+                                <div class="custom-dropdown-option" data-value="alexandria">Alexandria</div>
+                                <div class="custom-dropdown-option" data-value="giza">Giza</div>
+                                <div class="custom-dropdown-option" data-value="sharqia">Sharqia</div>
+                            </div>
+                            <select class="filter-select" id="locationFilter" style="display: none;">
+                                <option value="" data-en="All Locations" data-ar="جميع المواقع">All Locations</option>
+                                <option value="cairo" data-en="Cairo" data-ar="القاهرة">Cairo</option>
+                                <option value="alexandria" data-en="Alexandria" data-ar="الإسكندرية">Alexandria</option>
+                                <option value="giza" data-en="Giza" data-ar="الجيزة">Giza</option>
+                                <option value="sharqia" data-en="Sharqia" data-ar="الشرقية">Sharqia</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Specialties Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label" data-en="Specialties" data-ar="التخصصات">Specialties</label>
+                        <div class="custom-dropdown">
+                            <div class="custom-dropdown-select">
+                                <span data-en="All Specialties" data-ar="جميع التخصصات">All Specialties</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="custom-dropdown-options">
+                                <div class="custom-dropdown-option" data-value="">All Specialties</div>
+                                <div class="custom-dropdown-option" data-value="cardiology">Cardiology</div>
+                                <div class="custom-dropdown-option" data-value="neurology">Neurology</div>
+                                <div class="custom-dropdown-option" data-value="orthopedics">Orthopedics</div>
+                                <div class="custom-dropdown-option" data-value="pediatrics">Pediatrics</div>
+                                <div class="custom-dropdown-option" data-value="surgery">Surgery</div>
+                            </div>
+                            <select class="filter-select" id="specialtyFilter" style="display: none;">
+                                <option value="" data-en="All Specialties" data-ar="جميع التخصصات">All Specialties</option>
+                                <option value="cardiology" data-en="Cardiology" data-ar="أمراض القلب">Cardiology</option>
+                                <option value="neurology" data-en="Neurology" data-ar="علم الأعصاب">Neurology</option>
+                                <option value="orthopedics" data-en="Orthopedics" data-ar="جراحة العظام">Orthopedics</option>
+                                <option value="pediatrics" data-en="Pediatrics" data-ar="طب الأطفال">Pediatrics</option>
+                                <option value="surgery" data-en="Surgery" data-ar="الجراحة">Surgery</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Rating Filter -->
+                    <div class="filter-group">
+                        <label class="filter-label" data-en="Minimum Rating" data-ar="أقل تقييم">Minimum Rating</label>
+                        <div class="custom-dropdown">
+                            <div class="custom-dropdown-select">
+                                <span data-en="Any Rating" data-ar="أي تقييم">Any Rating</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="custom-dropdown-options">
+                                <div class="custom-dropdown-option" data-value="0">Any Rating</div>
+                                <div class="custom-dropdown-option" data-value="3">3+ <i class="fas fa-star"></i></div>
+                                <div class="custom-dropdown-option" data-value="4">4+ <i class="fas fa-star"></i></div>
+                                <div class="custom-dropdown-option" data-value="4.5">4.5+ <i class="fas fa-star"></i></div>
+                            </div>
+                            <select class="filter-select" id="ratingFilter" style="display: none;">
+                                <option value="0" data-en="Any Rating" data-ar="أي تقييم">Any Rating</option>
+                                <option value="3">3+ <i class="fas fa-star"></i></option>
+                                <option value="4">4+ <i class="fas fa-star"></i></option>
+                                <option value="4.5">4.5+ <i class="fas fa-star"></i></option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Distance Filter -->
+                    <div class="filter-group">
+                        <div class="distance-filter-toggle">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="distanceToggle">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-label" data-en="Distance Filter" data-ar="فلتر المسافة">Distance Filter</span>
+                        </div>
+                        <div class="distance-filter" id="distanceFilterContainer">
+                            <label class="filter-label" data-en="Distance (km)" data-ar="المسافة (كم)">Distance (km)</label>
+                            <div class="range-value" id="distanceValue" data-en="50 km" data-ar="50 كم">50 km</div>
+                        </div>
+                        <input type="range" id="distanceFilter" class="filter-range" min="0" max="50" value="50">
+                    </div>
+
+                    <!-- Additional Filters -->
+                    <div class="additional-filters" id="additionalFilters">
+                        <!-- Average Cost Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label" data-en="Average Cost" data-ar="متوسط التكلفة">Average Cost</label>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown-select">
+                                    <span data-en="Any Cost" data-ar="أي تكلفة">Any Cost</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="custom-dropdown-options">
+                                    <div class="custom-dropdown-option" data-value="">Any Cost</div>
+                                    <div class="custom-dropdown-option" data-value="low">Low</div>
+                                    <div class="custom-dropdown-option" data-value="medium">Medium</div>
+                                    <div class="custom-dropdown-option" data-value="high">High</div>
+                                </div>
+                                <select class="filter-select" id="costFilter" style="display: none;">
+                                    <option value="" data-en="Any Cost" data-ar="أي تكلفة">Any Cost</option>
+                                    <option value="low" data-en="Low" data-ar="منخفض">Low</option>
+                                    <option value="medium" data-en="Medium" data-ar="متوسط">Medium</option>
+                                    <option value="high" data-en="High" data-ar="مرتفع">High</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- 24/7 Availability Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label" data-en="24/7 Availability" data-ar="متاح 24/7">24/7 Availability</label>
+                            <div class="filter-checkbox">
+                                <input type="checkbox" id="availabilityFilter">
+                                <label for="availabilityFilter" data-en="Available 24/7" data-ar="متاح 24/7">Available 24/7</label>
+                            </div>
+                        </div>
+
+                        <!-- Insurance Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label" data-en="Insurance Accepted" data-ar="التأمين المقبول">Insurance Accepted</label>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown-select">
+                                    <span data-en="Any Insurance" data-ar="أي تأمين">Any Insurance</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="custom-dropdown-options">
+                                    <div class="custom-dropdown-option" data-value="">Any Insurance</div>
+                                    <div class="custom-dropdown-option" data-value="public">Public Insurance</div>
+                                    <div class="custom-dropdown-option" data-value="private">Private Insurance</div>
+                                </div>
+                                <select class="filter-select" id="insuranceFilter" style="display: none;">
+                                    <option value="" data-en="Any Insurance" data-ar="أي تأمين">Any Insurance</option>
+                                    <option value="public" data-en="Public Insurance" data-ar="تأمين حكومي">Public Insurance</option>
+                                    <option value="private" data-en="Private Insurance" data-ar="تأمين خاص">Private Insurance</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Contract Status Filter -->
+                        <div class="filter-group">
+                            <label class="filter-label" data-en="Contract Status" data-ar="حالة التعاقد">Contract Status</label>
+                            <div class="custom-dropdown">
+                                <div class="custom-dropdown-select">
+                                    <span data-en="All Status" data-ar="جميع الحالات">All Status</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="custom-dropdown-options">
+                                    <div class="custom-dropdown-option" data-value="">All Status</div>
+                                    <div class="custom-dropdown-option" data-value="active">Active</div>
+                                    <div class="custom-dropdown-option" data-value="pending">Pending</div>
+                                </div>
+                                <select class="filter-select" id="contractFilter" style="display: none;">
+                                    <option value="" data-en="All Status" data-ar="جميع الحالات">All Status</option>
+                                    <option value="active" data-en="Active" data-ar="فعال">Active</option>
+                                    <option value="pending" data-en="Pending" data-ar="معلق">Pending</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quick-filters-container">
+                <!-- Quick Filters -->
+                <div class="quick-filters">
+                    <button class="quick-filter-btn" data-filter="24/7" data-en="24/7 Available" data-ar="متاح 24/7">24/7 Available</button>
+                    <button class="quick-filter-btn" data-filter="high-rating" data-en="High Rating" data-ar="تقييم عالي">High Rating</button>
+                    <button class="quick-filter-btn" data-filter="nearby" data-en="Nearby" data-ar="قريب">Nearby</button>
+                    <button class="quick-filter-btn" data-filter="emergency" data-en="Emergency" data-ar="طوارئ">Emergency</button>
+                </div>
+
+                <!-- Active Filters Display -->
+                <div class="active-filters-container" id="activeFilters">
+                    <!-- Active filters will appear here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <!-- Results Header -->
+            <div class="results-header">
+                <div class="results-count">
+                    <span id="resultsCount" data-en="Showing 0 hospitals" data-ar="عرض 0 مستشفى">Showing 0 hospitals</span>
+                </div>
+                <div class="results-controls">
+                    <!-- View Toggle -->
+                    <div class="view-toggle">
+                        <button class="view-btn active" data-view="grid" data-en="Grid" data-ar="شبكة">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" data-view="list" data-en="Table" data-ar="جدول">
+                            <i class="fas fa-table"></i>
+                        </button>
+                        <button class="view-btn" data-view="map" data-en="Map" data-ar="خريطة">
+                            <i class="fas fa-map"></i>
+                        </button>
+                    </div>
+                    <div class="results-sort">
+                        <label for="sortBy" data-en="Sort by:" data-ar="ترتيب حسب:">Sort by:</label>
+                        <select id="sortBy" class="sort-select">
+                            <option value="name" data-en="Name" data-ar="الاسم">Name</option>
+                            <option value="rating" data-en="Rating" data-ar="التقييم">Rating</option>
+                            <option value="distance" data-en="Distance" data-ar="المسافة">Distance</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Results Content -->
+            <div class="results-content">
+                <!-- Grid View -->
+                <div class="results-grid active" id="gridView">
+                    <div class="hospitals-grid" id="hospitalsGrid">
+                        <!-- Hospitals will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- List View -->
+                <div class="results-list" id="listView">
+                    <div class="hospitals-list" id="hospitalsList">
+                        <!-- Hospitals will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Map View -->
+                <div class="results-map" id="mapView">
+                    <div class="map-wrapper">
+                        <div id="hospitalsMap"></div>
+                    </div>
+                    <div class="map-sidebar">
+                        <h3 data-en="Hospitals Nearby" data-ar="المستشفيات القريبة">Hospitals Nearby</h3>
+                        <div class="map-hospitals-list" id="mapHospitalsList">
+                            <!-- Hospitals for map sidebar will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination will be generated here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <div class="logo-placeholder">S</div>
+                        <span class="footer-logo-text">Serena</span>
+                    </div>
+                    <p class="footer-text" data-en="Next-generation healthcare management platform connecting patients, doctors, and hospitals." data-ar="منصة إدارة رعاية صحية من الجيل التالي تربط المرضى والأطباء والمستشفيات.">
+                        Next-generation healthcare management platform connecting patients, doctors, and hospitals.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                        <li class="footer-link"><a href="doctors.html" data-en="Find a Doctor" data-ar="ابحث عن طبيب">Find a Doctor</a></li>
+                        <li class="footer-link"><a href="hospitals.html" data-en="Find a Hospital" data-ar="ابحث عن مستشفى">Find a Hospital</a></li>
+                        <li class="footer-link"><a href="comingSoon.html" data-en="Blog" data-ar="المدونة">Blog</a></li>
+                        <li class="footer-link"><a href="comingSoon.html" data-en="About Us" data-ar="من نحن">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-en="Services" data-ar="الخدمات">Services</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#" data-en="Patient Portal" data-ar="بوابة المريض">Patient Portal</a></li>
+                        <li class="footer-link"><a href="#" data-en="Doctor Dashboard" data-ar="لوحة تحكم الطبيب">Doctor Dashboard</a></li>
+                        <li class="footer-link"><a href="#" data-en="Hospital Management" data-ar="إدارة المستشفى">Hospital Management</a></li>
+                        <li class="footer-link"><a href="#" data-en="Medical Records" data-ar="السجلات الطبية">Medical Records</a></li>
+                        <li class="footer-link"><a href="#" data-en="Appointments" data-ar="المواعيد">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-en="Contact Info" data-ar="معلومات الاتصال">Contact Info</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#"><i class="fas fa-map-marker-alt"></i> <span data-en="123 Healthcare St, Medical City" data-ar="123 شارع الرعاية الصحية، المدينة الطبية">123 Healthcare St, Medical City</span></a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-phone"></i> +1 234 567 8900</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-envelope"></i> info@serena.com</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-clock"></i> <span data-en="Mon-Fri: 9AM-6PM" data-ar="الإثنين-الجمعة: 9 صباحًا - 6 مساءً">Mon-Fri: 9AM-6PM</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Serena Healthcare. <span data-en="All rights reserved." data-ar="جميع الحقوق محفوظة.">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toaster Container for Notifications -->
+    <div id="toasterContainer" class="toaster-container"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/hospitals.js"></script>
+</body>
+</html>

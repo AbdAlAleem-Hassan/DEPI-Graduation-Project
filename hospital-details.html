@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Details - Serena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="js/theme-loader.js"></script>
+    <script src="js/language-loader.js"></script>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/hospital-details.css">
+    <link rel="stylesheet" href="css/toaster.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <div class="logo">
+                <div class="logo-placeholder">S</div>
+                <span class="logo-text" data-en="Serena" data-ar="سيرينا">Serena</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-en="Home" data-ar="الرئيسية">Home</a>
+                <div class="dropdown">
+                    <button class="nav-link dropdown-toggle active" data-en="Services" data-ar="الخدمات">
+                        <span data-en="Services" data-ar="الخدمات">Services</span> <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="hospitals.html" class="dropdown-link active" data-en="Find Hospital" data-ar="ابحث عن مستشفى">Find Hospital</a>
+                        <a href="doctors.html" class="dropdown-link" data-en="Find Doctors" data-ar="ابحث عن أطباء">Find Doctors</a>
+                        <a href="comingSoon.html" class="dropdown-link" data-en="Blogs" data-ar="المدونات">Blogs</a>
+                        <a href="comingSoon.html" class="dropdown-link" data-en="Reviews" data-ar="التقييمات">Reviews</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link" data-en="About Us" data-ar="من نحن">About Us</a>
+                <a href="contact.html" class="nav-link" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="lang-toggle" id="langToggle">
+                    EN
+                </button>
+                <a href="login.html" class="btn btn-login" data-en="Login" data-ar="تسجيل الدخول">Login</a>
+                <a href="register.html" class="btn btn-primary" data-en="Register" data-ar="إنشاء حساب">Register</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-nav-link" data-en="Home" data-ar="الرئيسية">Home</a>
+            
+            <!-- Services Dropdown in Mobile -->
+            <div class="mobile-dropdown">
+                <button class="mobile-nav-link mobile-dropdown-toggle active" data-en="Services" data-ar="الخدمات">
+                    <span data-en="Services" data-ar="الخدمات">Services</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="hospitals.html" class="mobile-dropdown-link active" data-en="Find Hospital" data-ar="ابحث عن مستشفى">Find Hospital</a>
+                    <a href="doctors.html" class="mobile-dropdown-link" data-en="Find Doctors" data-ar="ابحث عن أطباء">Find Doctors</a>
+                    <a href="comingSoon.html" class="mobile-dropdown-link" data-en="Blogs" data-ar="المدونات">Blogs</a>
+                    <a href="comingSoon.html" class="mobile-dropdown-link" data-en="Reviews" data-ar="التقييمات">Reviews</a>
+                </div>
+            </div>
+            
+            <a href="about.html" class="mobile-nav-link" data-en="About Us" data-ar="من نحن">About Us</a>
+            <a href="contact.html" class="mobile-nav-link" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+            <div class="mobile-auth-buttons">
+                <a href="login.html" class="btn btn-login" data-en="Login" data-ar="تسجيل الدخول">Login</a>
+                <a href="register.html" class="btn btn-primary" data-en="Register" data-ar="إنشاء حساب">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="page-header-background">
+            <div class="page-header-orbs">
+                <div class="page-header-orb"></div>
+                <div class="page-header-orb"></div>
+                <div class="page-header-orb"></div>
+            </div>
+        </div>
+        <div class="container">
+            <h1 class="page-title" id="hospitalName" data-en="Hospital Name" data-ar="اسم المستشفى">Hospital Name</h1>
+            <p class="page-subtitle" id="hospitalLocation" data-en="Hospital Location" data-ar="موقع المستشفى">
+                Hospital Location
+            </p>
+        </div>
+    </section>
+
+    <!-- Hospital Details Section -->
+    <section class="hospital-details">
+        <div class="container">
+            <div class="hospital-details-grid">
+                <!-- Left Column - Main Info -->
+                <div class="details-left">
+                    <!-- About Hospital -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="fas fa-hospital"></i>
+                            <h3 data-en="About Hospital" data-ar="عن المستشفى">About Hospital</h3>
+                        </div>
+                        <div class="hospital-description">
+                            <p id="hospitalDetailDescription" data-en="Hospital description will appear here..." data-ar="وصف المستشفى سيظهر هنا...">
+                                Hospital description will appear here...
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Services & Departments -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="fas fa-cogs"></i>
+                            <h3 data-en="Services & Departments" data-ar="الخدمات والأقسام">Services & Departments</h3>
+                        </div>
+                        <div class="hospital-services-departments" id="hospitalServicesDepartments">
+                            <!-- Services and departments will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Facilities -->
+                    <div class="info-card">
+                        <div class="info-card-header">
+                            <i class="fas fa-clinic-medical"></i>
+                            <h3 data-en="Facilities" data-ar="المرافق">Facilities</h3>
+                        </div>
+                        <div class="hospital-facilities" id="hospitalFacilities">
+                            <!-- Facilities will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Sticky Card -->
+                <div class="details-right">
+                    <div class="info-card">
+                        <!-- Hospital Image -->
+                        <div class="hospital-image-container">
+                            <img id="hospitalDetailImage" src="" alt="Hospital" class="hospital-detail-image">
+                            <div class="hospital-rating-badge">
+                                <i class="fas fa-star"></i>
+                                <span id="hospitalDetailRating">4.8</span>
+                            </div>
+                            <div class="availability-badge" id="availabilityBadge">
+                                <i class="fas fa-circle"></i>
+                                <span data-en="24/7 Available" data-ar="متاح 24/7">24/7 Available</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Quick Actions -->
+                        <div class="quick-actions">
+                            <button class="action-btn primary" id="viewAllDoctorsBtn">
+                                <i class="fas fa-user-md"></i>
+                                <span data-en="View All Doctors" data-ar="عرض جميع الأطباء">View All Doctors</span>
+                            </button>
+                            <button class="action-btn secondary" id="getDirectionsBtn">
+                                <i class="fas fa-directions"></i>
+                                <span data-en="Get Directions" data-ar="الاتجاهات">Get Directions</span>
+                            </button>
+                            <button class="action-btn secondary" id="bookAppointmentBtn">
+                                <i class="fas fa-calendar-check"></i>
+                                <span data-en="Book Appointment" data-ar="حجز موعد">Book Appointment</span>
+                            </button>
+                            <button class="action-btn secondary" id="contactHospitalBtn">
+                                <i class="fas fa-phone"></i>
+                                <span data-en="Call/Message" data-ar="اتصال/رسالة">Call/Message</span>
+                            </button>
+                        </div>
+
+                        <!-- Basic Info -->
+                        <div class="hospital-basic-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span id="hospitalDetailAddress" data-en="Address" data-ar="العنوان">Address</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span id="hospitalDetailPhone">+1 234 567 8900</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-clock"></i>
+                                <span id="hospitalDetailHours" data-en="24/7 Available" data-ar="متاح 24/7">24/7 Available</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-stethoscope"></i>
+                                <span id="hospitalDetailDepartments">25 Departments</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="contact-info">
+                        <h3 data-en="Contact Information" data-ar="معلومات الاتصال">Contact Information</h3>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span id="hospitalEmail">info@hospital.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-globe"></i>
+                                <span id="hospitalWebsite">www.hospital.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-ambulance"></i>
+                                <span id="hospitalEmergency">Emergency: +1 234 567 8910</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs Section -->
+            <div class="hospital-tabs">
+                <div class="tabs-header">
+                    <button class="tab-btn active" data-tab="doctors">
+                        <i class="fas fa-user-md"></i>
+                        <span data-en="Doctors" data-ar="الأطباء">Doctors</span>
+                    </button>
+                    <button class="tab-btn" data-tab="services">
+                        <i class="fas fa-cogs"></i>
+                        <span data-en="Services" data-ar="الخدمات">Services</span>
+                    </button>
+                    <button class="tab-btn" data-tab="departments">
+                        <i class="fas fa-building"></i>
+                        <span data-en="Departments" data-ar="الأقسام">Departments</span>
+                    </button>
+                    <button class="tab-btn" data-tab="locations">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-en="Locations" data-ar="المواقع">Locations</span>
+                    </button>
+                    <button class="tab-btn" data-tab="reviews">
+                        <i class="fas fa-star"></i>
+                        <span data-en="Reviews" data-ar="التقييمات">Reviews</span>
+                    </button>
+                </div>
+
+                <div class="tabs-content">
+                    <!-- Doctors Tab -->
+                    <div class="tab-pane active" id="doctors-tab">
+                        <div class="doctors-filters">
+                            <div class="filters-container">
+                                <div class="search-filter">
+                                    <input type="text" id="doctorSearch" placeholder="Search doctors..." class="search-input">
+                                    <button class="search-btn">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="filter-group">
+                                    <select id="specialtyFilter" class="filter-select">
+                                        <option value="">All Specialties</option>
+                                    </select>
+                                    <select id="availabilityFilter" class="filter-select">
+                                        <option value="">All Availability</option>
+                                        <option value="available">Available Now</option>
+                                        <option value="today">Available Today</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="selected-filters" id="selectedFilters">
+                                <!-- Active filters will appear here -->
+                            </div>
+                        </div>
+                        <div class="doctors-container">
+                            <div class="doctors-grid" id="doctorsGrid">
+                                <!-- Doctors will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Services Tab -->
+                    <div class="tab-pane" id="services-tab">
+                        <div class="services-grid" id="hospitalServicesGrid">
+                            <!-- Services will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Departments Tab -->
+                    <div class="tab-pane" id="departments-tab">
+                        <div class="departments-grid" id="departmentsGrid">
+                            <!-- Departments will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Locations Tab -->
+                    <div class="tab-pane" id="locations-tab">
+                        <div class="location-container">
+                            <div class="map-container">
+                                <div id="hospitalDetailMap"></div>
+                            </div>
+                            <div class="locations-list" id="hospitalLocationsList">
+                                <!-- Locations will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Tab -->
+                    <div class="tab-pane" id="reviews-tab">
+                        <div class="reviews-container">
+                            <div class="reviews-summary">
+                                <div class="reviews-header">
+                                    <div class="overall-rating">
+                                        <div class="rating-score" id="hospitalOverallRating">4.8</div>
+                                        <div class="rating-stars-info">
+                                            <div class="rating-stars">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                            </div>
+                                            <div class="rating-count" id="hospitalTotalReviews">(342 reviews)</div>
+                                        </div>
+                                    </div>
+                                    <div class="review-actions">
+                                        <button class="btn btn-primary" id="addHospitalReviewBtn">
+                                            <i class="fas fa-plus"></i>
+                                            <span data-en="Add Review" data-ar="إضافة تقييم">Add Review</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="review-sort">
+                                <select id="reviewSort" class="filter-select">
+                                    <option value="newest" data-en="Newest First" data-ar="الأحدث أولاً">Newest First</option>
+                                    <option value="oldest" data-en="Oldest First" data-ar="الأقدم أولاً">Oldest First</option>
+                                    <option value="highest" data-en="Highest Rating" data-ar="أعلى تقييم">Highest Rating</option>
+                                    <option value="lowest" data-en="Lowest Rating" data-ar="أقل تقييم">Lowest Rating</option>
+                                </select>
+                            </div>
+                            <div class="reviews-list" id="hospitalReviewsList">
+                                <!-- Reviews will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <div class="logo-placeholder">S</div>
+                        <span class="footer-logo-text">Serena</span>
+                    </div>
+                    <p class="footer-text" data-en="Next-generation healthcare management platform connecting patients, doctors, and hospitals." data-ar="منصة إدارة رعاية صحية من الجيل التالي تربط المرضى والأطباء والمستشفيات.">
+                        Next-generation healthcare management platform connecting patients, doctors, and hospitals.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                        <li class="footer-link"><a href="doctors.html" data-en="Find a Doctor" data-ar="ابحث عن طبيب">Find a Doctor</a></li>
+                        <li class="footer-link"><a href="hospitals.html" data-en="Find a Hospital" data-ar="ابحث عن مستشفى">Find a Hospital</a></li>
+                        <li class="footer-link"><a href="comingSoon.html" data-en="Blog" data-ar="المدونة">Blog</a></li>
+                        <li class="footer-link"><a href="comingSoon.html" data-en="About Us" data-ar="من نحن">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-en="Services" data-ar="الخدمات">Services</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#" data-en="Patient Portal" data-ar="بوابة المريض">Patient Portal</a></li>
+                        <li class="footer-link"><a href="#" data-en="Doctor Dashboard" data-ar="لوحة تحكم الطبيب">Doctor Dashboard</a></li>
+                        <li class="footer-link"><a href="#" data-en="Hospital Management" data-ar="إدارة المستشفى">Hospital Management</a></li>
+                        <li class="footer-link"><a href="#" data-en="Medical Records" data-ar="السجلات الطبية">Medical Records</a></li>
+                        <li class="footer-link"><a href="#" data-en="Appointments" data-ar="المواعيد">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-en="Contact Info" data-ar="معلومات الاتصال">Contact Info</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#"><i class="fas fa-map-marker-alt"></i> <span data-en="123 Healthcare St, Medical City" data-ar="123 شارع الرعاية الصحية، المدينة الطبية">123 Healthcare St, Medical City</span></a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-phone"></i> +1 234 567 8900</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-envelope"></i> info@serena.com</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-clock"></i> <span data-en="Mon-Fri: 9AM-6PM" data-ar="الإثنين-الجمعة: 9 صباحًا - 6 مساءً">Mon-Fri: 9AM-6PM</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Serena Healthcare. <span data-en="All rights reserved." data-ar="جميع الحقوق محفوظة.">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toaster Container -->
+    <div id="toasterContainer" class="toaster-container"></div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 data-en="Add Review" data-ar="إضافة تقييم">Add Review</h3>
+                <button class="modal-close">&times;</button>
+            </div>
+            <form id="reviewForm" class="modal-body">
+                <div class="form-group">
+                    <label data-en="Rating" data-ar="التقييم">Rating</label>
+                    <div class="rating-input">
+                        <i class="far fa-star" data-rating="1"></i>
+                        <i class="far fa-star" data-rating="2"></i>
+                        <i class="far fa-star" data-rating="3"></i>
+                        <i class="far fa-star" data-rating="4"></i>
+                        <i class="far fa-star" data-rating="5"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label data-en="Review" data-ar="التقييم">Review</label>
+                    <textarea id="reviewText" rows="4" placeholder="Share your experience..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label data-en="Upload Photos/Videos" data-ar="رفع الصور/الفيديوهات">Upload Photos/Videos</label>
+                    <input type="file" id="reviewMedia" multiple accept="image/*,video/*">
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn secondary" data-en="Cancel" data-ar="إلغاء">Cancel</button>
+                    <button type="submit" class="btn primary" data-en="Submit Review" data-ar="تقديم التقييم">Submit Review</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/hospital-details.js"></script>
+</body>
+</html>

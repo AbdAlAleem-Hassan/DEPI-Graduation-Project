@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon | MediCare Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #e6f7ff 0%, #f0f9ff 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 650px;
+            width: 90%;
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 119, 182, 0.1);
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
+        }
+        
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            background: #0077b6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 119, 182, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            color: #0077b6;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 0 rgba(0, 119, 182, 0.1);
+        }
+        
+        h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #023e8a;
+        }
+        
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            color: #555;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: #0077b6;
+            color: white;
+            padding: 1.2rem 0.8rem;
+            border-radius: 10px;
+            min-width: 80px;
+            box-shadow: 0 5px 15px rgba(0, 119, 182, 0.2);
+            animation: bounce 2s infinite;
+        }
+        
+        .countdown-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .countdown-item:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .countdown-item:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        
+        .countdown-number {
+            font-size: 2rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .countdown-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .notify-form {
+            display: flex;
+            max-width: 450px;
+            margin: 1.5rem auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 50px;
+            overflow: hidden;
+        }
+        
+        .notify-form input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 2px solid #0077b6;
+            border-right: none;
+            background: #f8f9fa;
+            font-size: 1rem;
+            outline: none;
+            border-radius: 50px 0 0 50px;
+        }
+        
+        .notify-form button {
+            padding: 0 20px;
+            background: #0077b6;
+            color: white;
+            border: 2px solid #0077b6;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 600;
+            border-radius: 0 50px 50px 0;
+        }
+        
+        .notify-form button:hover {
+            background: #023e8a;
+            border-color: #023e8a;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 1.5rem 0;
+        }
+        
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #e6f7ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0077b6;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: #0077b6;
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        /* Ambulance Container */
+        .ambulance-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            overflow: hidden;
+            z-index: 5;
+        }
+        
+        /* Road */
+        .road {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: #333;
+        }
+        
+        .road:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: repeating-linear-gradient(
+                90deg,
+                yellow,
+                yellow 20px,
+                transparent 20px,
+                transparent 40px
+            );
+            transform: translateY(-50%);
+            animation: road-move 1s linear infinite;
+        }
+        
+        @keyframes road-move {
+            0% { transform: translateY(-50%) translateX(0); }
+            100% { transform: translateY(-50%) translateX(-40px); }
+        }
+        
+        /* Ambulance Animation */
+        .ambulance {
+            position: absolute;
+            width: 160px;
+            height: 70px;
+            bottom: 40px;
+            left: -200px;
+            animation: drive 15s linear infinite;
+            z-index: 10;
+        }
+        
+        .ambulance:nth-child(2) {
+            animation-delay: 5s;
+        }
+        
+        .ambulance:nth-child(3) {
+            animation-delay: 10s;
+        }
+        
+        .ambulance-body {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border-radius: 10px 40px 10px 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ambulance-top {
+            position: absolute;
+            width: 50px;
+            height: 45px;
+            background: white;
+            top: -25px;
+            left: 15px;
+            border-radius: 10px 10px 0 0;
+        }
+        
+        .ambulance-light {
+            position: absolute;
+            width: 12px;
+            height: 6px;
+            background: #ffd166;
+            top: -10px;
+            left: 12px;
+            border-radius: 5px 5px 0 0;
+        }
+        
+        .ambulance-light:nth-child(2) {
+            left: 27px;
+        }
+        
+        .ambulance-siren {
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            background: #ff6b6b;
+            top: -30px;
+            left: 40px;
+            border-radius: 50%;
+            animation: siren 1s infinite;
+        }
+        
+        @keyframes siren {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .ambulance-cross {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            top: 10px;
+            right: 20px;
+        }
+        
+        .ambulance-cross:before,
+        .ambulance-cross:after {
+            content: '';
+            position: absolute;
+            background-color: #ff6b6b;
+            border-radius: 2px;
+        }
+        
+        .ambulance-cross:before {
+            width: 25px;
+            height: 6px;
+            top: 9px;
+            left: 0;
+        }
+        
+        .ambulance-cross:after {
+            width: 6px;
+            height: 25px;
+            top: 0;
+            left: 9px;
+        }
+        
+        .ambulance-wheel {
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background: #333;
+            border-radius: 50%;
+            bottom: -11px;
+            animation: wheel-rotate 1s linear infinite;
+        }
+        
+        .ambulance-wheel.front {
+            right: 25px;
+        }
+        
+        .ambulance-wheel.back {
+            right: 90px;
+        }
+        
+        @keyframes drive {
+            0% { left: -200px; }
+            100% { left: calc(100% + 200px); }
+        }
+        
+        @keyframes wheel-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(0, 119, 182, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 60px;
+            height: 60px;
+            top: 10%;
+            left: 10%;
+            animation-duration: 20s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 40px;
+            height: 40px;
+            top: 70%;
+            left: 80%;
+            animation-duration: 15s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 30px;
+            height: 30px;
+            top: 40%;
+            left: 85%;
+            animation-duration: 25s;
+        }
+        
+        .floating-element:nth-child(4) {
+            width: 70px;
+            height: 70px;
+            top: 80%;
+            left: 15%;
+            animation-duration: 30s;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(100px, -100px) rotate(360deg);
+            }
+        }
+        
+        /* Medical Icons */
+        .medical-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .medical-icon {
+            width: 60px;
+            height: 60px;
+            background: #e6f7ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0077b6;
+            font-size: 1.5rem;
+            animation: bounce 3s infinite;
+            box-shadow: 0 5px 15px rgba(0, 119, 182, 0.1);
+        }
+        
+        .medical-icon:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .medical-icon:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        
+        .medical-icon:nth-child(4) {
+            animation-delay: 0.6s;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.3rem;
+            }
+            
+            p {
+                font-size: 1rem;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 1rem 0.5rem;
+            }
+            
+            .countdown-number {
+                font-size: 1.6rem;
+            }
+            
+            .notify-form {
+                flex-direction: column;
+                border-radius: 10px;
+            }
+            
+            .notify-form input {
+                border-radius: 10px 10px 0 0;
+                border-right: 2px solid #0077b6;
+                border-bottom: none;
+            }
+            
+            .notify-form button {
+                border-radius: 0 0 10px 10px;
+                padding: 12px;
+            }
+            
+            .ambulance {
+                width: 140px;
+                height: 60px;
+            }
+            
+            .ambulance-top {
+                width: 40px;
+                height: 35px;
+                top: -20px;
+            }
+            
+            .ambulance-siren {
+                width: 15px;
+                height: 15px;
+                top: -25px;
+                left: 35px;
+            }
+            
+            .ambulance-wheel {
+                width: 18px;
+                height: 18px;
+                bottom: -9px;
+            }
+            
+            .ambulance-wheel.front {
+                right: 20px;
+            }
+            
+            .ambulance-wheel.back {
+                right: 75px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ambulance-container">
+        <div class="road"></div>
+        <div class="ambulance">
+            <div class="ambulance-body"></div>
+            <div class="ambulance-top"></div>
+            <div class="ambulance-light"></div>
+            <div class="ambulance-light"></div>
+            <div class="ambulance-siren"></div>
+            <div class="ambulance-cross"></div>
+            <div class="ambulance-wheel front"></div>
+            <div class="ambulance-wheel back"></div>
+        </div>
+        <div class="ambulance">
+            <div class="ambulance-body"></div>
+            <div class="ambulance-top"></div>
+            <div class="ambulance-light"></div>
+            <div class="ambulance-light"></div>
+            <div class="ambulance-siren"></div>
+            <div class="ambulance-cross"></div>
+            <div class="ambulance-wheel front"></div>
+            <div class="ambulance-wheel back"></div>
+        </div>
+        <div class="ambulance">
+            <div class="ambulance-body"></div>
+            <div class="ambulance-top"></div>
+            <div class="ambulance-light"></div>
+            <div class="ambulance-light"></div>
+            <div class="ambulance-siren"></div>
+            <div class="ambulance-cross"></div>
+            <div class="ambulance-wheel front"></div>
+            <div class="ambulance-wheel back"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+        
+        <div class="logo">
+            <i class="fas fa-hospital"></i>
+        </div>
+        
+        <h1>Coming Soon</h1>
+        <h2>MediCare Advanced Care Facility</h2>
+        <p>We're building a state-of-the-art healthcare facility to serve our community better. Our new hospital will feature cutting-edge technology and specialized care units.</p>
+        
+        <div class="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Days</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Hours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutes</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Seconds</span>
+            </div>
+        </div>
+        
+        <p>Be the first to know when we open our doors</p>
+        
+        <form class="notify-form">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Notify Me</button>
+        </form>
+        
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        
+        <div class="medical-icons">
+            <div class="medical-icon"><i class="fas fa-heartbeat"></i></div>
+            <div class="medical-icon"><i class="fas fa-stethoscope"></i></div>
+            <div class="medical-icon"><i class="fas fa-user-md"></i></div>
+            <div class="medical-icon"><i class="fas fa-ambulance"></i></div>
+        </div>
+    </div>
+
+    <script>
+        const targetDate = new Date(2025, 10, 26);
+            // targetDate.setDate(targetDate.getDate() + 45); // Set to 45 days from now
+        // Countdown Timer
+        function updateCountdown() {
+            
+            
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownTimer);
+                document.querySelector('.countdown').innerHTML = "<h3>We're Open!</h3>";
+            }
+        }
+        
+        const countdownTimer = setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Form submission
+        const form = document.querySelector('.notify-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Thank you! We'll notify you at ${email} when we launch.`);
+            this.querySelector('input').value = '';
+        });
+    </script>
+</body>
+</html>

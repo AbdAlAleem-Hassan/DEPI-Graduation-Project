@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام التعليمات التفاعلي</title>
+    <link rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+    <!-- زر الدعم -->
+    <button class="support-btn" id="supportBtn">
+        <i class="fas fa-headset"></i>
+        <span data-en="Support" data-ar="الدعم">الدعم</span>
+    </button>
+
+    <!-- شات البوت -->
+    <div class="chatbot-container" id="chatbot">
+        <div class="chatbot-header">
+            <h3 data-en="Support Assistant" data-ar="مساعد الدعم">مساعد الدعم</h3>
+            <button class="close-chat" id="closeChat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="chatbot-body" id="chatbotBody">
+            <!-- سيتم إضافة المحادثات هنا ديناميكياً -->
+        </div>
+    </div>
+
+    <!-- المودال التعليمي -->
+    <div class="tutorial-modal" id="tutorialModal">
+        <div class="tutorial-content">
+            <div class="tutorial-header">
+                <h2 id="tutorialTitle" data-en="Platform Usage Guide" data-ar="دليل استخدام المنصة">دليل استخدام المنصة</h2>
+                <button class="btn btn-secondary" id="closeTutorial">
+                    <span data-en="Close" data-ar="إغلاق">إغلاق</span>
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="language-selector">
+                <button class="lang-btn active" data-lang="ar">
+                    <i class="fas fa-language"></i>
+                    <span>العربية</span>
+                </button>
+                <button class="lang-btn" data-lang="en">
+                    <i class="fas fa-language"></i>
+                    <span>English</span>
+                </button>
+            </div>
+            
+            <div class="tutorial-body">
+                <div class="tutorial-sidebar" id="tutorialSidebar">
+                    <!-- سيتم إضافة عناصر القائمة الجانبية هنا ديناميكياً -->
+                </div>
+                
+                <div class="tutorial-main">
+                    <div class="video-container">
+                        <div class="video-placeholder" id="videoPlaceholder">
+                            <i class="fas fa-play-circle"></i>
+                            <p data-en="Tutorial video will play here" data-ar="سيتم عرض الفيديو التعليمي هنا">سيتم عرض الفيديو التعليمي هنا</p>
+                        </div>
+                        <video id="tutorialVideo" controls style="display: none;">
+                            <source src="" type="video/mp4">
+                            <p data-en="Your browser doesn't support HTML5 video" data-ar="متصفحك لا يدعم تشغيل الفيديو">متصفحك لا يدعم تشغيل الفيديو</p>
+                        </video>
+                    </div>
+                    
+                    <div id="tutorialDescription">
+                        <h3 id="sectionTitle" data-en="Welcome to the Platform" data-ar="مرحباً بك في المنصة">مرحباً بك في المنصة</h3>
+                        <p id="sectionDescription" data-en="Section details will be displayed here" data-ar="سيتم عرض تفاصيل القسم المحدد هنا">سيتم عرض تفاصيل القسم المحدد هنا</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tutorial-footer">
+                <button class="btn btn-secondary" id="prevSection" style="display: none;">
+                    <i class="fas fa-arrow-right"></i>
+                    <span data-en="Previous" data-ar="السابق">السابق</span>
+                </button>
+                <div class="footer-actions">
+                    <button class="btn btn-secondary" id="replayTutorial">
+                        <i class="fas fa-redo"></i>
+                        <span data-en="Replay" data-ar="إعادة التشغيل">إعادة التشغيل</span>
+                    </button>
+                    <button class="btn btn-primary" id="nextSection">
+                        <span data-en="Next" data-ar="التالي">التالي</span>
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button class="btn btn-primary" id="understandBtn" style="display: none;">
+                        <span data-en="I Understand" data-ar="فهمت">فهمت</span>
+                        <i class="fas fa-check"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="tutorial.js"></script>
+</body>
+</html>

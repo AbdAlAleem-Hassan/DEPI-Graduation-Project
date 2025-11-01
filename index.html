@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Serena - Next-Generation Healthcare Management Platform for Hospitals, Clinics, and Doctors to connect with patients. Find Doctors, Hospitals, and Clinics near you. Serena is the future of healthcare. Experience the power of Serena today!">
+    <title>Serena - Next-Generation Healthcare</title>
+    <script src="js/theme-loader.js"></script>
+    <script src="js//language-loader.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container container">
+            <div class="logo">
+                <div class="logo-placeholder">S</div>
+                <span class="logo-text" data-en="Serena" data-ar="سيرينا">Serena</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="index.html" class="nav-link active" data-en="Home" data-ar="الرئيسية">Home</a>
+                <div class="dropdown">
+                    <button class="nav-link dropdown-toggle" data-en="Services" data-ar="الخدمات">
+                        <span data-en="Services" data-ar="الخدمات">Services</span> <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="hospitals.html" class="dropdown-link" data-en="Find Hospital" data-ar="ابحث عن مستشفى">Find Hospital</a>
+                        <a href="doctors.html" class="dropdown-link" data-en="Find Doctors" data-ar="ابحث عن أطباء">Find Doctors</a>
+                        <a href="comingSoon.html" class="dropdown-link" data-en="Blogs" data-ar="المدونات">Blogs</a>
+                        <a href="comingSoon.html" class="dropdown-link" data-en="Reviews" data-ar="التقييمات">Reviews</a>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link" data-en="About Us" data-ar="من نحن">About Us</a>
+                <a href="contact.html" class="nav-link" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+            </div>
+            
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="lang-toggle" id="langToggle">
+                    EN
+                </button>
+                <a href="login.html" class="btn btn-login" data-en="Login" data-ar="تسجيل الدخول">Login</a>
+                <a href="register.html" class="btn btn-primary" data-en="Register" data-ar="إنشاء حساب">Register</a>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html" class="mobile-nav-link active" data-en="Home" data-ar="الرئيسية">Home</a>
+            
+            <!-- Services Dropdown in Mobile -->
+            <div class="mobile-dropdown">
+                <button class="mobile-nav-link mobile-dropdown-toggle" data-en="Services" data-ar="الخدمات">
+                    <span data-en="Services" data-ar="الخدمات">Services</span> <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="mobile-dropdown-content">
+                    <a href="hospitals.html" class="mobile-dropdown-link" data-en="Find Hospital" data-ar="ابحث عن مستشفى">Find Hospital</a>
+                    <a href="doctors.html" class="mobile-dropdown-link" data-en="Find Doctors" data-ar="ابحث عن أطباء">Find Doctors</a>
+                    <a href="comingSoon.html" class="mobile-dropdown-link" data-en="Blogs" data-ar="المدونات">Blogs</a>
+                    <a href="comingSoon.html" class="mobile-dropdown-link" data-en="Reviews" data-ar="التقييمات">Reviews</a>
+                </div>
+            </div>
+            
+            <a href="about.html" class="mobile-nav-link" data-en="About Us" data-ar="من نحن">About Us</a>
+            <a href="contact.html" class="mobile-nav-link" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</a>
+            <div class="mobile-auth-buttons">
+                <a href="login.html" class="btn btn-login" data-en="Login" data-ar="تسجيل الدخول">Login</a>
+                <a href="register.html" class="btn btn-primary" data-en="Register" data-ar="إنشاء حساب">Register</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="hero-orbs">
+                <div class="hero-orb"></div>
+                <div class="hero-orb"></div>
+                <div class="hero-orb"></div>
+            </div>
+        </div>
+        
+        <div class="hero-container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge" data-en="✨ Powered by AI & Advanced Technology" data-ar="✨ مدعوم بالذكاء الاصطناعي والتكنولوجيا المتقدمة">
+                        ✨ Powered by AI & Advanced Technology
+                    </div>
+                    <h1 class="hero-title" data-en="Next-Generation Healthcare Management" data-ar="إدارة الرعاية الصحية من الجيل التالي">
+                        Next-Generation Healthcare Management
+                    </h1>
+                    <p class="hero-subtitle" data-en="Serena connects and manages multiple hospitals under one unified ecosystem, providing advanced healthcare technology for patients, doctors, and administrators." data-ar="توفر سيرينا نظامًا موحدًا يربط ويدير مستشفيات متعددة تحت مظلة واحدة، مما يوفر تكنولوجيا رعاية صحية متقدمة للمرضى والأطباء والإداريين.">
+                        Serena connects and manages multiple hospitals under one unified ecosystem, providing advanced healthcare technology for patients, doctors, and administrators.
+                    </p>
+                    
+                    <div class="hero-actions">
+                        <button class="hero-btn hero-btn-primary" data-en="Book Appointment" data-ar="حجز موعد">
+                            <span data-en="Book Appointment" data-ar="حجز موعد">Book Appointment</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="hero-btn hero-btn-secondary" data-en="Explore Platform" data-ar="استكشف المنصة">
+                            <i class="fas fa-play"></i>
+                            <span data-en="Explore Platform" data-ar="استكشف المنصة">Explore Platform</span>
+                        </button>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">500+</div>
+                            <div class="hero-stat-label" data-en="Hospitals" data-ar="مستشفى">Hospitals</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">10K+</div>
+                            <div class="hero-stat-label" data-en="Doctors" data-ar="طبيب">Doctors</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="hero-stat-value">1M+</div>
+                            <div class="hero-stat-label" data-en="Patients" data-ar="مريض">Patients</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="hero-image-container">
+                        <img src="https://images.unsplash.com/photo-1631563020941-c0c6bc534b8e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwdGVjaG5vbG9neSUyMGZ1dHVyaXN0aWN8ZW58MXx8fHwxNzYwOTc3NzU1fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Medical Technology" class="hero-image">
+                        <div class="hero-image-overlay"></div>
+                    </div>
+                    
+                    <div class="hero-floating-card floating-card-1">
+                        <div class="floating-card-content">
+                            <div class="floating-card-icon">❤️</div>
+                            <div class="floating-card-text">
+                                <div class="floating-card-label" data-en="Health Score" data-ar="نقاط الصحة">Health Score</div>
+                                <div class="floating-card-value">98%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-floating-card floating-card-2">
+                        <div class="floating-card-content">
+                            <div class="floating-card-icon">🏥</div>
+                            <div class="floating-card-text">
+                                <div class="floating-card-label" data-en="Appointments" data-ar="المواعيد">Appointments</div>
+                                <div class="floating-card-value">245 Today</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+            <div class="scroll-indicator">
+                <div class="scroll-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <div class="partners-track">
+            <!-- Partner logos will be added dynamically -->
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2 class="section-title" data-en="Our Services" data-ar="خدماتنا">Our Services</h2>
+            <p class="section-subtitle" data-en="Comprehensive healthcare solutions for patients, doctors, and hospitals" data-ar="حلول رعاية صحية شاملة للمرضى والأطباء والمستشفيات">
+                Comprehensive healthcare solutions for patients, doctors, and hospitals
+            </p>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-hospital"></i>
+                    </div>
+                    <h3 class="service-title" data-en="Hospital Management" data-ar="إدارة المستشفى">Hospital Management</h3>
+                    <p class="service-description" data-en="Streamline hospital operations with our comprehensive management system." data-ar="تبسيط عمليات المستشفى مع نظام الإدارة الشامل لدينا.">
+                        Streamline hospital operations with our comprehensive management system.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3 class="service-title" data-en="Doctor Portal" data-ar="بوابة الطبيب">Doctor Portal</h3>
+                    <p class="service-description" data-en="Manage appointments, patients, and medical records efficiently." data-ar="إدارة المواعيد والمرضى والسجلات الطبية بكفاءة.">
+                        Manage appointments, patients, and medical records efficiently.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                    <h3 class="service-title" data-en="Patient Portal" data-ar="بوابة المريض">Patient Portal</h3>
+                    <p class="service-description" data-en="Book appointments, access medical records, and connect with doctors." data-ar="احجز المواعيد، واطلع على السجلات الطبية، وتواصل مع الأطباء.">
+                        Book appointments, access medical records, and connect with doctors.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                    </div>
+                    <h3 class="service-title" data-en="Pharmacy Integration" data-ar="تكامل الصيدلية">Pharmacy Integration</h3>
+                    <p class="service-description" data-en="Seamlessly connect with pharmacies for prescription management." data-ar="التكامل السلس مع الصيدليات لإدارة الوصفات الطبية.">
+                        Seamlessly connect with pharmacies for prescription management.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3 class="service-title" data-en="Medical Records" data-ar="السجلات الطبية">Medical Records</h3>
+                    <p class="service-description" data-en="Secure and accessible digital medical records for patients and providers." data-ar="سجلات طبية رقمية آمنة ويمكن الوصول إليها للمرضى ومقدمي الخدمات.">
+                        Secure and accessible digital medical records for patients and providers.
+                    </p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3 class="service-title" data-en="Emergency Services" data-ar="خدمات الطوارئ">Emergency Services</h3>
+                    <p class="service-description" data-en="Quick access to emergency care and ambulance services." data-ar="وصول سريع إلى رعاية الطوارئ وخدمات الإسعاف.">
+                        Quick access to emergency care and ambulance services.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-background">
+            <div class="features-orb"></div>
+            <div class="features-orb"></div>
+        </div>
+        
+        <div class="container features-container">
+            <div class="text-center mb-12">
+                <div class="features-badge" data-en="✨ Why Choose Serena" data-ar="✨ لماذا تختار سيرينا">
+                    ✨ Why Choose Serena
+                </div>
+                <h2 class="section-title" data-en="Advanced Technology for Healthcare" data-ar="تكنولوجيا متقدمة للرعاية الصحية">
+                    Advanced Technology for Healthcare
+                </h2>
+                <p class="section-subtitle" data-en="We combine innovation and care to deliver an unparalleled healthcare experience" data-ar="نجمع بين الابتكار والرعاية لتوفير تجربة رعاية صحية لا مثيل لها">
+                    We combine innovation and care to deliver an unparalleled healthcare experience
+                </p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <div class="feature-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="feature-icon-glow"></div>
+                    </div>
+                    <h3 class="feature-title" data-en="AI-Powered Matching" data-ar="مطابقة بالذكاء الاصطناعي">AI-Powered Matching</h3>
+                    <p class="feature-description" data-en="Smart algorithms match you with the perfect healthcare provider based on your needs and medical history." data-ar="خوارزميات ذكية تربطك بمقدم الرعاية الصحية المثالي بناءً على احتياجاتك وتاريخك الطبي.">
+                        Smart algorithms match you with the perfect healthcare provider based on your needs and medical history.
+                    </p>
+                    <div class="feature-hover-line"></div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="feature-icon-glow"></div>
+                    </div>
+                    <h3 class="feature-title" data-en="End-to-End Encryption" data-ar="تشفير شامل">End-to-End Encryption</h3>
+                    <p class="feature-description" data-en="Your medical records and personal data are protected with military-grade encryption technology." data-ar="سجلاتك الطبية وبياناتك الشخصية محمية بتقنية تشفير عسكرية.">
+                        Your medical records and personal data are protected with military-grade encryption technology.
+                    </p>
+                    <div class="feature-hover-line"></div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="feature-icon-glow"></div>
+                    </div>
+                    <h3 class="feature-title" data-en="Instant Appointments" data-ar="مواعيد فورية">Instant Appointments</h3>
+                    <p class="feature-description" data-en="Book appointments in seconds with real-time availability and instant confirmation." data-ar="احجز المواعيد في ثوانٍ مع التوفر في الوقت الفعلي والتأكيد الفوري.">
+                        Book appointments in seconds with real-time availability and instant confirmation.
+                    </p>
+                    <div class="feature-hover-line"></div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="feature-icon-glow"></div>
+                    </div>
+                    <h3 class="feature-title" data-en="Multi-Hospital Network" data-ar="شبكة متعددة المستشفيات">Multi-Hospital Network</h3>
+                    <p class="feature-description" data-en="Access a unified network of 500+ hospitals and 10,000+ doctors across the region." data-ar="الوصول إلى شبكة موحدة من أكثر من 500 مستشفى و 10,000 طبيب في المنطقة.">
+                        Access a unified network of 500+ hospitals and 10,000+ doctors across the region.
+                    </p>
+                    <div class="feature-hover-line"></div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <div class="feature-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="feature-icon-glow"></div>
+                    </div>
+                    <h3 class="feature-title" data-en="Family Health Hub" data-ar="مركز صحة العائلة">Family Health Hub</h3>
+                    <p class="feature-description" data-en="Manage health records and appointments for your entire family from one dashboard." data-ar="إدارة السجلات الصحية والمواعيد لجميع أفراد عائلتك من لوحة تحكم واحدة.">
+                        Manage health records and appointments for your entire family from one dashboard.
+                    </p>
+                    <div class="feature-hover-line"></div>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon-container">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="feature-icon-glow"></div>
+                    </div>
+                    <h3 class="feature-title" data-en="Health Analytics" data-ar="تحليلات صحية">Health Analytics</h3>
+                    <p class="feature-description" data-en="Get personalized health insights and recommendations powered by advanced analytics." data-ar="احصل على رؤى وتوصيات صحية مخصصة مدعومة بالتحليلات المتقدمة.">
+                        Get personalized health insights and recommendations powered by advanced analytics.
+                    </p>
+                    <div class="feature-hover-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hospitals Section - تم التعديل -->
+    <section class="hospitals">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="section-title" data-en="Top Hospitals" data-ar="أفضل المستشفيات">Top Hospitals</h2>
+                <p class="section-subtitle" data-en="Discover the best hospitals in our network" data-ar="اكتشف أفضل المستشفيات في شبكتنا">
+                    Discover the best hospitals in our network
+                </p>
+            </div>
+            
+            <!-- تم إزالة الـ carousel واستبداله بـ grid عادي -->
+            <div class="hospitals-grid">
+                <!-- Hospital cards will be added dynamically -->
+            </div>
+            
+            <button class="view-all-btn" data-en="View All" data-ar="عرض الكل">
+                <span data-en="View All" data-ar="عرض الكل">View All</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Doctors Section - تم التعديل -->
+    <section class="doctors">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="section-title" data-en="Top Doctors" data-ar="أفضل الأطباء">Top Doctors</h2>
+                <p class="section-subtitle" data-en="Meet our highly qualified medical professionals" data-ar="تعرف على محترفينا الطبيين المؤهلين تأهيلا عاليا">
+                    Meet our highly qualified medical professionals
+                </p>
+            </div>
+            
+            <!-- تم إزالة الـ carousel واستبداله بـ grid عادي -->
+            <div class="doctors-grid">
+                <!-- Doctor cards will be added dynamically -->
+            </div>
+            
+            <button class="view-all-btn" data-en="View All" data-ar="عرض الكل">
+                <span data-en="View All" data-ar="عرض الكل">View All</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container about-container">
+            <div class="about-content">
+                <h2 class="about-title" data-en="About Serena" data-ar="عن سيرينا">About Serena</h2>
+                <p class="about-text" data-en="Serena is a revolutionary healthcare management platform that integrates cutting-edge technology with medical expertise to create a seamless experience for patients, doctors, and hospital administrators." data-ar="سيرينا هي منصة ثورية لإدارة الرعاية الصحية تدمج أحدث التقنيات مع الخبرة الطبية لخلق تجربة سلسة للمرضى والأطباء ومديري المستشفيات.">
+                    Serena is a revolutionary healthcare management platform that integrates cutting-edge technology with medical expertise to create a seamless experience for patients, doctors, and hospital administrators.
+                </p>
+                <p class="about-text" data-en="Our platform connects multiple hospitals under one unified ecosystem, enabling efficient resource management, improved patient care, and advanced medical research capabilities." data-ar="توفر منصتنا نظامًا موحدًا يربط ويدير مستشفيات متعددة تحت مظلة واحدة، مما يمكن من إدارة الموارد بكفاءة، وتحسين رعاية المرضى، وقدرات متقدمة للبحث الطبي.">
+                    Our platform connects multiple hospitals under one unified ecosystem, enabling efficient resource management, improved patient care, and advanced medical research capabilities.
+                </p>
+                <button class="btn btn-primary about-btn" data-en="Learn More" data-ar="تعرف أكثر">Learn More</button>
+            </div>
+            <div class="about-image-grid">
+                <div class="image-grid">
+                    <div class="grid-image">
+                        <img src="https://images.unsplash.com/photo-1666886573230-2b730505f298?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkb2N0b3IlMjBtZWRpY2FsJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc2MDk4MTUzMnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Doctor">
+                    </div>
+                    <div class="grid-image">
+                        <img src="https://images.unsplash.com/photo-1652352568961-143b1ed17746?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3NwaXRhbCUyMGludGVyaW9yJTIwbW9kZXJufGVufDF8fHx8MTc2MDk4NjY2Mnww&ixlib=rb-4.1.0&q=80&w=1080" alt="Hospital">
+                    </div>
+                    <div class="grid-image">
+                        <img src="https://images.unsplash.com/photo-1631563020941-c0c6bc534b8e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZWRpY2FsJTIwdGVjaG5vbG9neSUyMGZ1dHVyaXN0aWN8ZW58MXx8fHwxNzYwOTc3NzU1fDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Medical Technology">
+                    </div>
+                </div>
+                
+                <div class="about-floating-stat">
+                    <div class="about-stat-value">99.8%</div>
+                    <div class="about-stat-label" data-en="Patient Satisfaction" data-ar="رضا المرضى">Patient Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section - تم التعديل -->
+    <section class="reviews">
+        <div class="container">
+            <div class="text-center mb-12">
+                <h2 class="section-title" data-en="Patient Reviews" data-ar="تقييمات المرضى">Patient Reviews</h2>
+                <p class="section-subtitle" data-en="What our patients say about us" data-ar="ماذا يقول مرضانا عنا">
+                    What our patients say about us
+                </p>
+            </div>
+            
+            <!-- تم إزالة الـ carousel واستبداله بـ grid عادي -->
+            <div class="reviews-grid">
+                <!-- Review cards will be added dynamically -->
+            </div>
+            
+            <div class="reviews-stats">
+                <div class="review-stat">
+                    <div class="review-stat-value">4.9/5</div>
+                    <div class="review-stat-label" data-en="Average Rating" data-ar="متوسط التقييم">Average Rating</div>
+                </div>
+                <div class="review-stat">
+                    <div class="review-stat-value">50K+</div>
+                    <div class="review-stat-label" data-en="Reviews" data-ar="تقييم">Reviews</div>
+                </div>
+                <div class="review-stat">
+                    <div class="review-stat-value">98%</div>
+                    <div class="review-stat-label" data-en="Satisfaction" data-ar="رضا">Satisfaction</div>
+                </div>
+                <div class="review-stat">
+                    <div class="review-stat-value">1M+</div>
+                    <div class="review-stat-label" data-en="Happy Patients" data-ar="مريض سعيد">Happy Patients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2 class="section-title text-center" data-en="Contact Us" data-ar="اتصل بنا">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label" for="name" data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
+                            <input type="text" id="name" class="form-input" placeholder data-en="Enter your name" data-ar="أدخل اسمك">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="email" data-en="Email Address" data-ar="عنوان البريد الإلكتروني">Email Address</label>
+                            <input type="email" id="email" class="form-input" placeholder data-en="Enter your email" data-ar="أدخل بريدك الإلكتروني">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="subject" data-en="Subject" data-ar="الموضوع">Subject</label>
+                            <input type="text" id="subject" class="form-input" placeholder data-en="Enter subject" data-ar="أدخل الموضوع">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="message" data-en="Message" data-ar="الرسالة">Message</label>
+                            <textarea id="message" class="form-textarea" placeholder data-en="Enter your message" data-ar="أدخل رسالتك"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" data-en="Send Message" data-ar="إرسال الرسالة">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-map">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <div class="logo-placeholder">S</div>
+                        <span class="footer-logo-text">Serena</span>
+                    </div>
+                    <p class="footer-text" data-en="Next-generation healthcare management platform connecting patients, doctors, and hospitals." data-ar="منصة إدارة رعاية صحية من الجيل التالي تربط المرضى والأطباء والمستشفيات.">
+                        Next-generation healthcare management platform connecting patients, doctors, and hospitals.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                        <li class="footer-link"><a href="doctors.html" data-en="Find a Doctor" data-ar="ابحث عن طبيب">Find a Doctor</a></li>
+                        <li class="footer-link"><a href="hospitals.html" data-en="Find a Hospital" data-ar="ابحث عن مستشفى">Find a Hospital</a></li>
+                        <li class="footer-link"><a href="comingSoon.html" data-en="Blog" data-ar="المدونة">Blog</a></li>
+                        <li class="footer-link"><a href="comingSoon.html" data-en="About Us" data-ar="من نحن">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-en="Services" data-ar="الخدمات">Services</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#" data-en="Patient Portal" data-ar="بوابة المريض">Patient Portal</a></li>
+                        <li class="footer-link"><a href="#" data-en="Doctor Dashboard" data-ar="لوحة تحكم الطبيب">Doctor Dashboard</a></li>
+                        <li class="footer-link"><a href="#" data-en="Hospital Management" data-ar="إدارة المستشفى">Hospital Management</a></li>
+                        <li class="footer-link"><a href="#" data-en="Medical Records" data-ar="السجلات الطبية">Medical Records</a></li>
+                        <li class="footer-link"><a href="#" data-en="Appointments" data-ar="المواعيد">Appointments</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3 class="footer-heading" data-en="Contact Info" data-ar="معلومات الاتصال">Contact Info</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#"><i class="fas fa-map-marker-alt"></i> <span data-en="123 Healthcare St, Medical City" data-ar="123 شارع الرعاية الصحية، المدينة الطبية">123 Healthcare St, Medical City</span></a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-phone"></i> +1 234 567 8900</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-envelope"></i> info@serena.com</a></li>
+                        <li class="footer-link"><a href="#"><i class="fas fa-clock"></i> <span data-en="Mon-Fri: 9AM-6PM" data-ar="الإثنين-الجمعة: 9 صباحًا - 6 مساءً">Mon-Fri: 9AM-6PM</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Serena Healthcare. <span data-en="All rights reserved." data-ar="جميع الحقوق محفوظة.">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- In the script section at the bottom of index.html -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="js/main.js"></script>
+<script src="js/map.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>
